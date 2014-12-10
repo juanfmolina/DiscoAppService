@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 9/12/2014 07:45:59 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="co.udea.edu.compumovil.gr10.discoapp.domain.entities.SolicitudCancion" table="SolicitudCancion" catalog="DiscoApp" optimistic-lock="version">
+        <id name="idPeticionCancion" type="java.lang.Integer">
+            <column name="idPeticionCancion" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="usuario" class="co.udea.edu.compumovil.gr10.discoapp.domain.entities.Usuario" fetch="select">
+            <column name="usuarioSolicitador" length="40" not-null="true" />
+        </many-to-one>
+        <property name="nombrePeticion" type="string">
+            <column name="nombrePeticion" length="100" not-null="true" />
+        </property>
+        <property name="estadoPeticion" type="string">
+            <column name="estadoPeticion" length="45" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
