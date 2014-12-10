@@ -8,7 +8,7 @@
             <column name="idEvento" />
             <generator class="assigned" />
         </id>
-        <many-to-one name="usuario" class="co.udea.edu.compumovil.gr10.discoapp.domain.entities.Usuario" fetch="select">
+        <many-to-one name="usuario"  class="co.udea.edu.compumovil.gr10.discoapp.domain.entities.Usuario" fetch="select" lazy="false">
             <column name="usuarioRegistro" length="40" not-null="true" />
         </many-to-one>
         <property name="nombreEvento" type="string">

@@ -61,17 +61,23 @@ public class EventoDaoImplement implements EventoDao {
     @Override
     public void insertEvento(Evento evento) {
         Session session = null;
-        Transaction transaction = null;
+
         try {
             session = HibernateSessionFactory.getInstance().getSession();
-            transaction = session.beginTransaction();
-            transaction.begin();
-            session.save(evento);
-            transaction.commit();
+            Transaction transaction = null;
+            try {
+                transaction = session.getTransaction();
+                transaction.begin();
+                session.save(evento);
+                transaction.commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+                transaction.rollback();
+            }
+
         } catch (Exception e) {
-            transaction.rollback();
-            System.out.println(e.getMessage());
-        }finally{
+            e.printStackTrace();
+        } finally {
             if (session != null) {
                 session.close();
             }
@@ -85,7 +91,8 @@ public class EventoDaoImplement implements EventoDao {
         List<Evento> listaEventos = new ArrayList<Evento>();
         try {
             session = HibernateSessionFactory.getInstance().getSession();
-            Query query = session.createQuery("from Evento where fechaEvento >  current_date() orderby fechaEvento");
+            Query query;
+            query = session.createQuery("from Evento where fechaEvento > current_timestamp order by fechaEvento");
             listaEventos = query.list();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -100,12 +107,61 @@ public class EventoDaoImplement implements EventoDao {
 
     @Override
     public void updateEvento(Evento evento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Session session = null;
+
+        try {
+            session = HibernateSessionFactory.getInstance().getSession();
+            Transaction transaction = null;
+            try {
+                transaction = session.getTransaction();
+                transaction.begin();
+                session.update(evento);
+                transaction.commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+                transaction.rollback();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+
+        }
     }
 
     @Override
     public void deleteEvento(int idEvento) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Session session = null;
+
+        try {
+            session = HibernateSessionFactory.getInstance().getSession();
+            Transaction transaction = null;
+            Evento evento = this.getEvento(idEvento);
+            try {
+                if (evento != null) {
+                    transaction = session.getTransaction();
+                    transaction.begin();
+                    session.delete(evento);
+                    transaction.commit();
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                System.out.println(e.getCause());
+                transaction.rollback();
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.getCause());
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+
+        }
     }
 
 }

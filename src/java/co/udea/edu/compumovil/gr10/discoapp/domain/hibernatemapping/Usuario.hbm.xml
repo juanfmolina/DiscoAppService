@@ -23,23 +23,6 @@
         <property name="correoElectronico" type="string">
             <column name="correoElectronico" length="45" not-null="true" />
         </property>
-        <set name="solicitudCancions" table="SolicitudCancion" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="usuarioSolicitador" length="40" not-null="true" />
-            </key>
-            <one-to-many class="co.udea.edu.compumovil.gr10.discoapp.domain.entities.SolicitudCancion" />
-        </set>
-        <set name="eventos" table="Evento" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="usuarioRegistro" length="40" not-null="true" />
-            </key>
-            <one-to-many class="co.udea.edu.compumovil.gr10.discoapp.domain.entities.Evento" />
-        </set>
-        <set name="calificacions" table="Calificacion" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="usuarioCalificador" length="40" not-null="true" />
-            </key>
-            <one-to-many class="co.udea.edu.compumovil.gr10.discoapp.domain.entities.Calificacion" />
-        </set>
+       
     </class>
 </hibernate-mapping>
