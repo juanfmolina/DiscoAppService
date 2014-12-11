@@ -10,6 +10,7 @@ import co.udea.edu.compumovil.gr10.discoapp.data.dao.implement.UsuarioDaoImpleme
 import co.udea.edu.compumovil.gr10.discoapp.domain.entities.Usuario;
 import java.security.MessageDigest;
 import java.util.Arrays;
+import java.util.Date;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
@@ -26,6 +27,7 @@ public class UsuarioLogic {
     public Usuario registrarUsuario(Usuario usuario) {
 
         usuarioDao = new UsuarioDaoImplement();
+        usuario.setFechaRegistro(new Date());
         if (validarDatos(usuario)) {
             usuario.setPassword(encriptar(usuario.getPassword()));
             if (!usuarioDao.makeAccount(usuario)) {

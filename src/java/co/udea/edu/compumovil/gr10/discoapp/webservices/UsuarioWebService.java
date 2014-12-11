@@ -25,11 +25,10 @@ public class UsuarioWebService {
     private UsuarioLogic usuarioLogic;
     
     
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
+   
+    @Produces(MediaType.TEXT_PLAIN)
     @GET
     @Path ("iniciosesion")
-
     public String iniciarSesion(@QueryParam("usuario") String nombreUsuario,
             @QueryParam("password") String password) {
         
@@ -45,13 +44,11 @@ public class UsuarioWebService {
     @Path("registro")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public boolean registrarUsuario(String ){
+    public Usuario registrarUsuario(Usuario usuario){
         usuarioLogic = new UsuarioLogic();
         Usuario usuarioRegistrado=usuarioLogic.registrarUsuario(usuario);
-        if (usuarioRegistrado==null) {
-            return false;
-        }
-        return true;
+        
+        return usuarioRegistrado;
     }
 
 }
