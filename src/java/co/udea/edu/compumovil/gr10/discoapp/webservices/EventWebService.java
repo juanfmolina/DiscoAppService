@@ -18,7 +18,7 @@ import javax.ws.rs.core.MediaType;
  * @author juanf.molina
  */
 
-@Path("Eventos")
+@Path("eventos")
 public class EventWebService {
     
     /**
@@ -32,9 +32,10 @@ public class EventWebService {
     public List<Evento> obtenerEventosProximos (){
         List<Evento> eventosProximos;
         eventoLogic= new EventoLogic();
-        eventosProximos= eventoLogic.obtenerTodosLosEventos();
+        eventosProximos= eventoLogic.obtenerEventosProximos();
         return eventosProximos;
         
     }
     
+ 
 }

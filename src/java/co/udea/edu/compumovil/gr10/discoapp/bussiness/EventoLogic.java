@@ -17,7 +17,6 @@ import java.util.List;
  */
 public class EventoLogic {
     private EventoDao eventoDao;
-    private UsuarioDao usuarioDao;
     
     public boolean crearEvento(Evento evento){
         if (evento.getFechaEvento()==null || evento.getNombreEvento()==null

@@ -6,7 +6,7 @@
     <class name="co.udea.edu.compumovil.gr10.discoapp.domain.entities.Cancion" table="Cancion" catalog="DiscoApp" optimistic-lock="version">
         <id name="idCancion" type="int">
             <column name="idCancion" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="nombre" type="string">
             <column name="Nombre" length="50" not-null="true" />

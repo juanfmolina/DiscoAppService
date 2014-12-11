@@ -33,15 +33,7 @@ public interface UsuarioDao {
    
     public Usuario getUsuario(String idUsuario) ;
     
-    /**
-     * Obtiene el usuario por el parametro de nombre de usuario
-     * @param nombreUsuario es el nombre de usuario ingresado
-     * @return retorna el usuario espeficicado 
-     */
-   
-    public Usuario getUsuarioByNombre(String nombreUsuario) ;
-   
-   
+  
     /**
      * Entrega los datos de un usuario segun el tipo de usuario.
      * @param tipoUsuario valor usado para encontrar el usuario solicitado
@@ -54,23 +46,26 @@ public interface UsuarioDao {
      /**
       * crea una cuenta con los datos del usuario
       * @param usuario valor usado para crear una cuenta
+      * @return retorna el exito o no de la creacion del usuario
       */
      
-      public void makeAccount(Usuario usuario);
+      public boolean makeAccount(Usuario usuario);
      
       /**
        * Usado para actualizar los datos de almacenados en el sistema de un usuario
        * @param usuario recibe el usuario que se desea actualizar
+       * @return retorna el exito o no de la actualizacion del usuario
        */
        
-       public void updateUsuario(Usuario usuario);
+       public boolean updateUsuario(Usuario usuario);
        
        /**
         * Usado para eliminar el usuario con el parámetro ingresado
         * @param idUsuario identificador del usuario a eliminar
+        * @return retorna el exito o no de la eliminacion del usuario
         */
        
-        public void deleteUsuario(String idUsuario);
+        public boolean deleteUsuario(String idUsuario);
        
        
        

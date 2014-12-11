@@ -6,7 +6,7 @@
     <class name="co.udea.edu.compumovil.gr10.discoapp.domain.entities.Calificacion" table="Calificacion" catalog="DiscoApp" optimistic-lock="version">
         <id name="idCalificacion" type="int">
             <column name="idCalificacion" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="usuario" class="co.udea.edu.compumovil.gr10.discoapp.domain.entities.Usuario" fetch="select">
             <column name="usuarioCalificador" length="40" not-null="true" />
