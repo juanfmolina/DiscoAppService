@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.udea.edu.compumovil.gr10.discoapp.data.dao.Implement;
+package co.udea.edu.compumovil.gr10.discoapp.data.dao.implement;
 
 import co.udea.edu.compumovil.gr10.discoapp.data.dao.PeticionCancionDao;
 import co.udea.edu.compumovil.gr10.discoapp.data.hibernateconfig.HibernateSessionFactory;
@@ -52,7 +52,7 @@ public class PeticionCancionDaoImplement implements PeticionCancionDao {
         Session session = null;
         try {
             session = HibernateSessionFactory.getInstance().getSession();
-            Query query = session.createQuery("from Solicitud cancion where idSolicitud =:idSolicitud");
+            Query query = session.createQuery("from SolicitudCancion where idPeticionCancion =:idSolicitud");
             query.setParameter("idSolicitud", idSolicitud);
             solicitud = (SolicitudCancion) query.uniqueResult();
         } catch (Exception e) {
@@ -85,12 +85,12 @@ public class PeticionCancionDaoImplement implements PeticionCancionDao {
     }
 
     @Override
-    public List<SolicitudCancion> getSolicitudByUsuario(int idUsuario) {
+    public List<SolicitudCancion> getSolicitudByUsuario(String idUsuario) {
         Session session = null;
         List<SolicitudCancion> listaSolicitudes = new ArrayList<SolicitudCancion>();
         try {
             session = HibernateSessionFactory.getInstance().getSession();
-            Query query = session.createQuery("from SolicitudCancion where idUsuario =:idUsuario ");
+            Query query = session.createQuery("from SolicitudCancion where usuarioSolicitador =:idUsuario ");
             query.setParameter("idUsuario", idUsuario);
             listaSolicitudes = query.list();
         } catch (Exception e) {

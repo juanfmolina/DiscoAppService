@@ -39,7 +39,8 @@ public interface PeticionCancionDao {
     
     /**
      * 
+     * @param idUsuario
      * @return 
      */
-    public List<SolicitudCancion> getSolicitudByUsuario(int idUsuario);
+    public List<SolicitudCancion> getSolicitudByUsuario(String idUsuario);
 }
