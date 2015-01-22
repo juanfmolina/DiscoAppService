@@ -36,6 +36,7 @@ public class SolicitudLogic {
             return false;
         }
         usuarioDao= new UsuarioDaoImplement();
+        solicitudCancionDao= new SolicitudCancionDaoImplement();
         Usuario usuario = usuarioDao.getUsuario(nombreUsuario);
          if (usuario==null) {
             return false;
