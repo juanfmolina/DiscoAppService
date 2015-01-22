@@ -44,7 +44,7 @@ public class SolicitudLogic {
          if (!usuario.getTipoUsuario().equals("cliente")) {
             return false;
         }
-         SolicitudCancion solicitudCancion = new SolicitudCancion(usuario, nombrePeticion, nombrePeticion, new Date());
+         SolicitudCancion solicitudCancion = new SolicitudCancion(usuario, nombrePeticion, "pendiente", new Date());
          solicitudCancionDao.insertPeticion(solicitudCancion);
          return true;        
     }

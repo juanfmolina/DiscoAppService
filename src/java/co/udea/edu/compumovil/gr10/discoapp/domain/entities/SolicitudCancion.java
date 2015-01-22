@@ -29,7 +29,6 @@ public class SolicitudCancion  implements java.io.Serializable {
     }
 
     public SolicitudCancion(Usuario usuario, String nombrePeticion, String estadoPeticion, Date fechaSolicitud) {
-        this.idPeticionCancion = idPeticionCancion;
         this.usuario = usuario;
         this.nombrePeticion = nombrePeticion;
         this.estadoPeticion = estadoPeticion;
