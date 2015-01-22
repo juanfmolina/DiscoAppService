@@ -6,7 +6,6 @@
 package co.udea.edu.compumovil.gr10.discoapp.bussiness;
 
 import co.udea.edu.compumovil.gr10.discoapp.data.dao.EventoDao;
-import co.udea.edu.compumovil.gr10.discoapp.data.dao.UsuarioDao;
 import co.udea.edu.compumovil.gr10.discoapp.data.dao.implement.EventoDaoImplement;
 import co.udea.edu.compumovil.gr10.discoapp.domain.entities.Evento;
 import java.util.List;

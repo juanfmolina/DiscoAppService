@@ -5,7 +5,7 @@
  */
 package co.udea.edu.compumovil.gr10.discoapp.data.dao.implement;
 
-import co.udea.edu.compumovil.gr10.discoapp.data.dao.PeticionCancionDao;
+import co.udea.edu.compumovil.gr10.discoapp.data.dao.SolicitudCancionDao;
 import co.udea.edu.compumovil.gr10.discoapp.data.hibernateconfig.HibernateSessionFactory;
 import co.udea.edu.compumovil.gr10.discoapp.domain.entities.SolicitudCancion;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import org.hibernate.Transaction;
  *
  * @author santiago.gomezp
  */
-public class PeticionCancionDaoImplement implements PeticionCancionDao {
+public class SolicitudCancionDaoImplement implements SolicitudCancionDao {
 
     @Override
     public void insertPeticion(SolicitudCancion solicitud) {
@@ -35,15 +35,15 @@ public class PeticionCancionDaoImplement implements PeticionCancionDao {
                 e.printStackTrace();
                 transaction.rollback();
             }
-            
+
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             if (session != null) {
                 session.close();
             }
         }
-        
+
     }
 
     @Override
@@ -57,31 +57,31 @@ public class PeticionCancionDaoImplement implements PeticionCancionDao {
             solicitud = (SolicitudCancion) query.uniqueResult();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-        }finally{
+        } finally {
             if (session != null) {
                 session.close();
             }
         }
-        
+
         return solicitud;
     }
 
     @Override
     public List<SolicitudCancion> getAllSolicitudes() {
         Session session = null;
-        List<SolicitudCancion>  listaSolicitudes = new ArrayList<SolicitudCancion>();
+        List<SolicitudCancion> listaSolicitudes = new ArrayList<SolicitudCancion>();
         try {
             session = HibernateSessionFactory.getInstance().getSession();
             Query query = session.createQuery("From SolicitudCancion");
             listaSolicitudes = query.list();
         } catch (Exception e) {
-             System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         } finally {
             if (session != null) {
                 session.close();
             }
         }
-        return listaSolicitudes;            
+        return listaSolicitudes;
     }
 
     @Override
@@ -95,15 +95,59 @@ public class PeticionCancionDaoImplement implements PeticionCancionDao {
             listaSolicitudes = query.list();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            
-        }finally {
+
+        } finally {
             if (session != null) {
                 session.close();
             }
         }
         return listaSolicitudes;
     }
-    
-    
-    
+
+    @Override
+    public List<SolicitudCancion> getPendingPeticiones() {
+        Session session = null;
+        List<SolicitudCancion> listaSolicitudes = new ArrayList<SolicitudCancion>();
+        try {
+            session = HibernateSessionFactory.getInstance().getSession();
+            Query query = session.createQuery("from SolicitudCancion where estadoPeticion =:estado order by fechaPeticion");
+            query.setParameter("estado", "pendiente");
+            listaSolicitudes = query.list();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+        return listaSolicitudes;
+    }
+
+    @Override
+    public void updatePeticion(SolicitudCancion solicitud) {
+        Session session = null;
+        try {
+            session = HibernateSessionFactory.getInstance().getSession();
+            Transaction transaction = null;
+            try {
+                transaction = session.getTransaction();
+                transaction.begin();
+                session.update(solicitud);
+                transaction.commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+                transaction.rollback();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+
+    }
+
 }

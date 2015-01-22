@@ -8,7 +8,6 @@ package co.udea.edu.compumovil.gr10.discoapp.data.dao.implement;
 import co.udea.edu.compumovil.gr10.discoapp.data.dao.CalificacionDao;
 import co.udea.edu.compumovil.gr10.discoapp.data.hibernateconfig.HibernateSessionFactory;
 import co.udea.edu.compumovil.gr10.discoapp.domain.entities.Calificacion;
-import co.udea.edu.compumovil.gr10.discoapp.domain.entities.Cancion;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;

@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author santiago.gomezp
  */
-public interface PeticionCancionDao {
+public interface SolicitudCancionDao {
     
     /**
      * 
@@ -29,6 +29,18 @@ public interface PeticionCancionDao {
      * @return 
      */
     public SolicitudCancion getPeticion(int idSolicitud);
+    
+    /**
+     * Metodo para retornar todas las peticiones de canción por orden ascendente de fecha
+     * @return Lista con todas las peticiones pendientes
+     */
+    public List<SolicitudCancion> getPendingPeticiones();
+    
+    /**
+     * Metodo para actualizar una peticion de cancion
+     * @param solicitud 
+     */
+    public void updatePeticion(SolicitudCancion solicitud);
     
     
     /**

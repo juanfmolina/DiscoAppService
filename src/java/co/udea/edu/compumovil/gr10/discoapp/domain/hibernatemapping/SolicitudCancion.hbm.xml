@@ -17,5 +17,8 @@
         <property name="estadoPeticion" type="string">
             <column name="estadoPeticion" length="45" not-null="true" />
         </property>
+        <property name="fechaPeticion" type="timestamp">
+            <column name="fechaPeticion" length="19" not-null="true"/>
+        </property>
     </class>
 </hibernate-mapping>
